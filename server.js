@@ -46,6 +46,10 @@ app.post('/api/tasks', (req, res) => {
     if (!title || !description || !priority) {
         return res.status(400).send("there is something not found")
     }
+   const prop = ["high", "medium", "low"];
+    if (!prop.includes(priority.toLowerCase())) {
+        return res.status(400).send("priority must be high, medium, or low");
+    }
     // KEEP THIS CODE AFTER ADDING TASK TO TASKS ARRAY
     saveTasks(tasks, "data/tasks.json");
 });
